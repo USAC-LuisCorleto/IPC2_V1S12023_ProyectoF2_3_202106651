@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{% static 'css/estilosLogin.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <title>Iniciar sesión en USAC-Cinema</title>
+</head>
+<body>
+    <div class="formulario">
+        <h1>INICIO DE SESIÓN</h1>
+        <form method="post">
+            <div class="username">
+                <input type="text" required>
+                <label>Usuario</label>
+            </div>
+            <div class ="username">
+                <input type="password" required>
+                <label>Contraseña</label>
+            </div>
+            <div class ="recordar">¿Olvidó su contraseña?</div>
+            <input type="submit" value="Iniciar sesión">
+            <div class="registrarse">
+                ¿No tienes una cuenta? <a href="registroUser.html">Registrate</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
