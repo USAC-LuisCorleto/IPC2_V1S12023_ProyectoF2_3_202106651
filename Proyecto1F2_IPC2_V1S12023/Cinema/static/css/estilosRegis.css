@@ -3,14 +3,14 @@
     --fondo: #141414;
 }
 
-body{
-    margin: o;
+body {
+    margin: 0;
     padding: 0;
     font-family: 'Open Sans', sans-serif;
     background: var(--fondo); 
 }
 
-.formulario{
+.formulario {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -18,27 +18,29 @@ body{
     width: 800px;
     background: white;
     border-radius: 10px;
+    padding-bottom: 35px;
 }
 
-.formulario h1{
+.formulario h1 {
     text-align: center;
     padding: 0 0 20px 0;
     border-bottom: 1px solid silver;
 }
 
-.formulario form{
+.formulario form {
     padding: 0 40px;
     box-sizing: border-box;
+    padding-bottom: 50px;
 }
 
-form .username{
+.formulario .username {
     position: relative;
     border-bottom: 2px solid #adadad;
     margin: 30px 0;
 }
 
-.username input{
-    width: 100px;
+.formulario .username input {
+    width: 100%;
     padding: 0 5px;
     height: 40px;
     font-size: 16px;
@@ -47,7 +49,7 @@ form .username{
     outline: none;
 }
 
-.username label{
+.formulario .username label {
     position: absolute;
     top: 50%;
     left: 5px;
@@ -58,7 +60,7 @@ form .username{
     transition: .5s;
 }
 
-.username span::before{
+.formulario .username span::before {
     content: '';
     position: absolute;
     top: 40px;
@@ -69,28 +71,18 @@ form .username{
     transition: .5s;
 }
 
-.username input:focus ~ label,
-.username input:focus ~ label{
+.formulario .username input:focus ~ label,
+.formulario .username input:valid ~ label {
     top: -5px;
     color: var(--fondo);
 }
 
-.username input:focus ~ span::before,
-.username input:focus ~ span::before{
+.formulario .username input:focus ~ span::before,
+.formulario .username input:valid ~ span::before {
     width: 100%;
 }
 
-.recordar{
-    margin: -5px 0 20px 5px;
-    color: blue;
-    cursor: pointer;
-}
-
-.recordar:hover{
-    text-decoration: underline;
-}
-
-input[type="submit"]{
+.formulario input[type="submit"] {
     width: 100%;
     height: 50px;
     border: 1px solid;
@@ -100,25 +92,15 @@ input[type="submit"]{
     color: white;
     cursor: pointer;
     outline: none;
-}
-
-input[type="submit"]{
-    border-color: purple;
     transition: .5s;
+    position: absolute;
 }
 
-.registrarse{
-    margin: 30px 0;
-    text-align: center;
-    font-family: 16px;
-    color: black
+.formulario input[type="submit"]:hover {
+    border-color: purple;
 }
 
-.registrarse a{
-    color: blue;
-    text-decoration: none;
-}
-
-.registrarse a:hover{
-    text-decoration: underline;
+.formulario .botonReg {
+    position: relative;
+    top: 30px;
 }

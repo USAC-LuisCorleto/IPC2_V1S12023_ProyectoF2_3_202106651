@@ -1,0 +1,115 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link rel="stylesheet" href="{% static 'css/estilosAdmin.css' %}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+        <title>Menu Administrador USAC-Cinema</title>
+    </head>
+<body>
+    <nav class="nav">
+        <div class="nav__container">
+            <h1 class="nav__title">Menú Administrador USAC-Cinema</h1>
+            <a href="#menu" class="nav__menu">
+                <img src="{% static 'assets/inicio.svg' %}" class="nav__icon">
+            </a>
+            <a href="#" class="nav__menu nav__menu--second">
+                <img src="{% static 'assets/inicio.svg' %}" class="nav__icon ">
+            </a>
+            <ul class="dropdown" id="menu">
+                <li class="dropdown__list">
+                    <a href="#" class="dropdown__link">
+                        <img src="{% static 'assets/inicio.svg' %}" class="dropdown__icon">
+                        <span class="dropdown__span">Inicio</span>
+                    </a>
+                </li>
+                <li class="dropdown__list">
+                    <a href="#" class="dropdown__link">
+                        <img src="{% static 'assets/user.svg' %}" class="dropdown__icon">
+                        <span class="dropdown__span">Usuarios</span>
+                        <img src="{% static 'assets/down.svg' %}" class="dropdown__arrow">
+                        <input type="checkbox" class="dropdown__check">
+                    </a>
+                    <div class="dropdown__content">
+                        <ul class="dropdown__sub">
+                            <li class="dropdown__li">
+                                <a href="#" class="dropdown__anchor">Crear</a>
+                            </li>
+                            <li class="dropdown__li">
+                                <a href="#" class="dropdown__anchor">Editar</a>
+                            </li>
+                            <li class="dropdown__li">
+                                <a href="#" class="dropdown__anchor">Eliminar</a>
+                            </li>
+                            <li class="dropdown__li">
+                                <a href="#" class="dropdown__anchor">Cargar XML</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="dropdown__list">
+                    <a href="#" class="dropdown__link">
+                        <img src="{% static 'assets/pelicula.svg' %}" class="dropdown__icon">
+                        <span class="dropdown__span">Películas</span>
+                        <img src="{% static 'assets/down.svg' %}" class="dropdown__arrow">
+                        <input type="checkbox" class="dropdown__check">
+                    </a>
+                    <div class="dropdown__content">
+                        <ul class="dropdown__sub">
+                            <li class="dropdown__li">
+                                <a href="#" class="dropdown__anchor">Crear</a>
+                            </li>
+                            <li class="dropdown__li">
+                                <a href="#" class="dropdown__anchor">Editar</a>
+                            </li>
+                            <li class="dropdown__li">
+                                <a href="#" class="dropdown__anchor">Eliminar</a>
+                            </li>
+                            <li class="dropdown__li">
+                                <a href="#" class="dropdown__anchor">Cargar XML</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </li>
+
+            <li class="dropdown__list">
+                <a href="#" class="dropdown__link">
+                    <img src="{% static 'assets/salas.svg' %}" class="dropdown__icon">
+                    <span class="dropdown__span">Salas</span>
+                    <img src="{% static 'assets/down.svg' %}" class="dropdown__arrow">
+                    <input type="checkbox" class="dropdown__check">
+                </a>
+                <div class="dropdown__content">
+                    <ul class="dropdown__sub">
+                        <li class="dropdown__li">
+                            <a href="#" class="dropdown__anchor">Crear</a>
+                        </li>
+                        <li class="dropdown__li">
+                            <a href="#" class="dropdown__anchor">Editar</a>
+                        </li>
+                        <li class="dropdown__li">
+                            <a href="#" class="dropdown__anchor">Eliminar</a>
+                        </li>
+                        <li class="dropdown__li">
+                            <a href="#" class="dropdown__anchor">Cargar XML</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="dropdown__list">
+                <a href="sesionIniciar_Registrar.html" class="dropdown__link">
+                    <img src="{% static 'assets/end.svg' %}" class="dropdown__icon">
+                    <span class="dropdown__span">Cerrar Sesión</span>
+                </a>
+            </li>
+            </ul>
+        </div>
+    </nav>
+</body>
+</html>
