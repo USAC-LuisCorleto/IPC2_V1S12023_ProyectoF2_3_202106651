@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'css/estilosEditUsuario.css' %}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+        <title>Editando un usuario de USAC-Cinema</title>
+    </head>
+<body>
+    <div id="main-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Rol</th><th>Nombre</th><th>Apellido</th><th>Teléfono</th><th>Correo</th><th>Contraseña</th><th>Gestión</th>
+                </tr>
+                </thead>
+                {% for usuario in lista_usuarios %}
+                <tr>
+                    <td>{{ usuario.rol }}</td>
+                    <td>{{ usuario.nombre }}</td>
+                    <td>{{ usuario.apellido }}</td>
+                    <td>{{ usuario.telefono }}</td>
+                    <td>{{ usuario.correo }}</td>
+                    <td>{{ usuario.contraseña }}</td>
+                    <td>
+                        <form method="POST" action="/Cinema/editarUsuario.html">
+                            {% csrf_token %}
+                            <input type="hidden" name="usuario_id" value="{{ usuario.id }}">
+                            <input type="text" name="rol" value="{{ usuario.rol }}">
+                            <input type="text" name="nombre" value="{{ usuario.nombre }}">
+                            <input type="text" name="apellido" value="{{ usuario.apellido }}">
+                            <input type="text" name="telefono" value="{{ usuario.telefono }}">
+                            <input type="text" name="correo" value="{{ usuario.correo }}">
+                            <input type="text" name="contraseña" value="{{ usuario.contraseña }}">
+                            <button type="submit" class="editarb">Editar</button>
+                        </form>
+                        <form method="POST" action="/Cinema/editarUsuario.html" onsubmit="return confirm('¿Estás seguro de eliminar este usuario?')">
+                            {% csrf_token %}
+                            <input type="hidden" name="correo" value="{{ usuario.correo }}">
+                            <button type="submit" class="eliminarb">Eliminar</button>
+                            <input type="hidden" name="eliminar" value="1">
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+        </table>
+        <a href="menuAdministrador.html">Regresar el Menú</a>
+    </div>
+</body>
+</html>

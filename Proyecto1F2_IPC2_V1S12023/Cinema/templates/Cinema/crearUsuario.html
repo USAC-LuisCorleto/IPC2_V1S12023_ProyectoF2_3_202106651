@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'css/estilosCrearUsuario.css' %}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+        <title>Creando un usuario para USAC-Cinema</title>
+    </head>
+    <body>
+        <div class="formulario">
+            <h1>Cree una cuenta de USAC-Cinema</h1>
+            <form method="post" action="/Cinema/crearUsuario.html">
+                <div class ="username">
+                    <input type="text" name= "nombre" required>
+                    <label>Nombre</label>
+                </div>
+                <div class="username">
+                    <input type="text" name="apellido" required>
+                    <label>Apellido</label>
+                </div>
+                <div class="username">
+                    <input type="text" name="telefono" required>
+                    <label>Teléfono</label>
+                </div>
+                <div class="username">
+                    <input type="email" name="correo" required>
+                    <label>Correo electrónico</label>
+                </div>
+                <div class="username">
+                    <input type="password" name="contraseña" required>
+                    <label>Contraseña</label>
+                <div class="botonReg">
+                    <input type="submit" value="Crear">
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
