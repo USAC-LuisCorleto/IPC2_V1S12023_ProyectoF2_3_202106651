@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{% static 'css/estilosEditPel.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <title>Editando películas de USAC-Cinema</title>
+</head>
+<body>
+    <div id="main-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Director</th>
+                    <th>Año</th>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Imagen</th>
+                    <th>Precio</th>
+                    <th>Gestión</th>
+                </tr>
+            </thead>
+            {% for pelicula in lista_peliculas %}
+            <tr>
+                <td>{{ pelicula.titulo }}</td>
+                <td>{{ pelicula.director }}</td>
+                <td>{{ pelicula.año_pelicula }}</td>
+                <td>{{ pelicula.fecha_funcion }}</td>
+                <td>{{ pelicula.hora_funcion }}</td>
+                <td>{{ pelicula.imagen }}</td>
+                <td>{{ pelicula.precio }}</td>
+                <td>
+                    <form method="POST" action="/Cinema/editarPelícula.html">
+                        {% csrf_token %}
+                        <input type="text" name="titulo" value="{{ pelicula.titulo }}">
+                        <input type="text" name="director" value="{{ pelicula.director }}">
+                        <input type="text" name="año_pelicula" value="{{ pelicula.año_pelicula }}">
+                        <input type="text" name="fecha_funcion" value="{{ pelicula.fecha_funcion }}">
+                        <input type="text" name="hora_funcion" value="{{ pelicula.hora_funcion }}">
+                        <input type="text" name="precio" value="{{ pelicula.precio }}">
+                        <button type="submit" class="btn-editar">Editar</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="menuAdministrador.html">Regresar el Menú</a>
+    </div>
+</body>
+</html>

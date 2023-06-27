@@ -1,11 +1,13 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
-import xml.etree.ElementTree as ET
 from .models import Usuario
+from .models import Película
 from .listaSimple import ListaEnlazada
 from django.views.decorators.csrf import csrf_exempt
+from .listaDobleC import ListaDoblementeEnlazadaCircular
 
 listaSimpleE = ListaEnlazada()
+listaDobleE = ListaDoblementeEnlazadaCircular()
 user="3082203580607"
 password="202106651"
     
@@ -103,6 +105,42 @@ def MenCargarUsuarios(request):
 
     return render(request, "Cinema/cargarUsuario.html")
 
+def MenCrearPelícula(request):
+    if request.method == 'POST':
+        nombre_categoria = request.POST['nombre_categoria']
+        titulo = request.POST['titulo']
+        director = request.POST['director']
+        año_pelicula = int(request.POST['año_pelicula'])
+        fecha_funcion = request.POST['fecha_funcion']
+        hora_funcion = request.POST['hora_funcion']
+        imagen = request.FILES['imagen']
+        precio = request.POST['precio']
 
+        pel = Película(nombre_categoria=nombre_categoria, titulo=titulo, director=director, año_pelicula=año_pelicula, fecha_funcion=fecha_funcion, hora_funcion=hora_funcion, imagen=imagen, precio=precio)
+        listaDobleE.add(pel)
+        listaDobleE.guardar_en_xml()
+        return redirect('menuAdministrador.html')
+    
+    return render(request, "Cinema/crearPelícula.html")
+
+def MenEditPelícula(request):
+    lista_peliculas = listaDobleE.obtener_lista_peliculas()
+    if request.method == 'POST':
+        titulo = request.POST['titulo']
+        nuevo_titulo = request.POST['nuevo_titulo']
+        director = request.POST['director']
+        año_pelicula = int(request.POST['año_pelicula'])
+        fecha_funcion = request.POST['fecha_funcion']
+        hora_funcion = request.POST['hora_funcion']
+        imagen = request.FILES['imagen']
+        precio = request.POST['precio']
+
+        # Aquí debes llamar al método actualizar_pelicula de tu lista doblemente enlazada
+        # pasando los parámetros correspondientes
+        listaDobleE.actualizar_pelicula(titulo, nuevo_titulo, director, año_pelicula, fecha_funcion, hora_funcion, imagen, precio)
+
+        return redirect('menuAdministrador.html')
+
+    return render(request, "Cinema/editarPelícula.html", {'lista_peliculas': lista_peliculas})
 
 
