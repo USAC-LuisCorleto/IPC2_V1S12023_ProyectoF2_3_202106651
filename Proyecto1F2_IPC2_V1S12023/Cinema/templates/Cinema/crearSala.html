@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'css/estilosCrearSala.css' %}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+        <title>Creando una sala para USAC-Cinema</title>
+    </head>
+    <body>
+        <div class="formulario">
+            <h1>Cree una sala de USAC-Cinema</h1>
+            <form method="post" action="/Cinema/crearSala.html">
+                <div class="username">
+                    <input type="text" name="Asientos" required>
+                    <label>Asientos</label>
+                </div>
+                <div class="botonReg">
+                    <input type="submit" value="Crear">
+                </div>
+            </form>
+            <div class="registrarse">
+                <a href="menuAdministrador.html">Regresar</a>
+           </div>
+        </div>
+    </body>
+</html>

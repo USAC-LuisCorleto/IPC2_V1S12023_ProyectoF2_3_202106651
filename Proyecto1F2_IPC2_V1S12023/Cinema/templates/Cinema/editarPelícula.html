@@ -23,31 +23,39 @@
                     <th>Gestión</th>
                 </tr>
             </thead>
-            {% for pelicula in lista_peliculas %}
-            <tr>
-                <td>{{ pelicula.titulo }}</td>
-                <td>{{ pelicula.director }}</td>
-                <td>{{ pelicula.año_pelicula }}</td>
-                <td>{{ pelicula.fecha_funcion }}</td>
-                <td>{{ pelicula.hora_funcion }}</td>
-                <td>{{ pelicula.imagen }}</td>
-                <td>{{ pelicula.precio }}</td>
-                <td>
-                    <form method="POST" action="/Cinema/editarPelícula.html">
-                        {% csrf_token %}
-                        <input type="text" name="titulo" value="{{ pelicula.titulo }}">
-                        <input type="text" name="director" value="{{ pelicula.director }}">
-                        <input type="text" name="año_pelicula" value="{{ pelicula.año_pelicula }}">
-                        <input type="text" name="fecha_funcion" value="{{ pelicula.fecha_funcion }}">
-                        <input type="text" name="hora_funcion" value="{{ pelicula.hora_funcion }}">
-                        <input type="text" name="precio" value="{{ pelicula.precio }}">
-                        <button type="submit" class="btn-editar">Editar</button>
-                    </form>
-                </td>
-            </tr>
-            {% endfor %}
+            <tbody>
+                {% for pelicula in lista_peliculas %}
+                <tr>
+                    <td>{{ pelicula.titulo }}</td>
+                    <td>{{ pelicula.director }}</td>
+                    <td>{{ pelicula.año_pelicula }}</td>
+                    <td>{{ pelicula.fecha_funcion }}</td>
+                    <td>{{ pelicula.hora_funcion }}</td>
+                    <td>{{ pelicula.imagen }}</td>
+                    <td>{{ pelicula.precio }}</td>
+                    <td>
+                        <form method="POST" action="/Cinema/editarPelícula.html">
+                            {% csrf_token %}
+                            <input type="text" name="titulo" value="{{ pelicula.titulo }}">
+                            <input type="text" name="director" value="{{ pelicula.director }}">
+                            <input type="text" name="año_pelicula" value="{{ pelicula.año_pelicula }}">
+                            <input type="text" name="fecha_funcion" value="{{ pelicula.fecha_funcion }}">
+                            <input type="text" name="hora_funcion" value="{{ pelicula.hora_funcion }}">
+                            <input type="text" name="imagen" value="{{ pelicula.imagen }}">
+                            <input type="text" name="precio" value="{{ pelicula.precio }}">
+                            <button type="submit" name="editar">Editar</button>
+                        </form>
+                        <form method="POST" action="/Cinema/editarPelícula.html" onsubmit="return confirm('¿Estás seguro de eliminar esta película?')">
+                            {% csrf_token %}
+                            <input type="hidden" name="titulo" value="{{ pelicula.titulo }}">
+                            <button type="submit" name="eliminar">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
         </table>
-        <a href="menuAdministrador.html">Regresar el Menú</a>
+        <a href="menuAdministrador.html">Regresar al Menú</a>
     </div>
 </body>
 </html>

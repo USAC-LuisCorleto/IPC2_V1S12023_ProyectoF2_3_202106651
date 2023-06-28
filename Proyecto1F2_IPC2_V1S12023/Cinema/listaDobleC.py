@@ -1,6 +1,7 @@
 import xml.etree.ElementTree as ET
 from datetime import datetime
 from datetime import datetime
+from .models import Película
 
 class Nodo:
     def __init__(self, dato):
@@ -56,12 +57,12 @@ class ListaDoblementeEnlazadaCircular:
         root = ET.Element("categorias")
 
         categorias = set()
-        actual = self.primero  # Reemplazar self.cabeza por self.primero
+        actual = self.primero
         while True:
             categoria = actual.dato.nombre_categoria
             categorias.add(categoria)
             actual = actual.siguiente
-            if actual == self.primero:  # Reemplazar self.cabeza por self.primero
+            if actual == self.primero: 
                 break
 
         for categoria in categorias:
@@ -71,7 +72,7 @@ class ListaDoblementeEnlazadaCircular:
 
             peliculas_element = ET.SubElement(categoria_element, "peliculas")
 
-            actual = self.primero  # Reemplazar self.cabeza por self.primero
+            actual = self.primero 
             while True:
                 if actual.dato.nombre_categoria == categoria:
                     pelicula_element = ET.SubElement(peliculas_element, "pelicula")
@@ -98,8 +99,109 @@ class ListaDoblementeEnlazadaCircular:
                     precio_element.text = str(actual.dato.precio)
 
                 actual = actual.siguiente
-                if actual == self.primero:  # Reemplazar self.cabeza por self.primero
+                if actual == self.primero:  
                     break
 
         tree = ET.ElementTree(root)
         tree.write("peliculas.xml")
+
+    def actualizar_pelicula(self, titulo, nuevo_director, nuevo_año_pelicula, nueva_fecha_funcion, nueva_hora_funcion, nuevo_precio):
+        actual = self.primero
+        while True:
+            if actual.dato.titulo == titulo:
+                actual.dato.titulo == titulo
+                actual.dato.director = nuevo_director
+                actual.dato.año_pelicula = nuevo_año_pelicula
+                actual.dato.fecha_funcion = nueva_fecha_funcion
+                actual.dato.hora_funcion = nueva_hora_funcion
+                actual.dato.precio = nuevo_precio
+                break
+            actual = actual.siguiente
+            if actual == self.primero:
+                break
+
+        tree = ET.parse('peliculas.xml')
+        root = tree.getroot()
+
+        for pelicula_element in root.findall('.//pelicula'):
+            if pelicula_element.find('titulo').text == titulo:
+                pelicula_element.find('director').text = nuevo_director
+                pelicula_element.find('anio').text = str(nuevo_año_pelicula)
+                pelicula_element.find('fecha').text = datetime.strptime(nueva_fecha_funcion, "%Y-%m-%d").strftime("%Y-%m-%d")
+                pelicula_element.find('hora').text = datetime.strptime(nueva_hora_funcion, "%H:%M").strftime("%H:%M")
+                pelicula_element.find('precio').text = str(nuevo_precio)
+
+        tree.write('peliculas.xml')
+
+    def cargar_desde_xml(self, archivo):
+        tree = ET.parse(archivo)
+        root = tree.getroot()
+
+        for categoria_element in root.findall('.//categoria'):
+            nombre_categoria = categoria_element.find('nombre').text
+
+            peliculas_element = categoria_element.find('peliculas')
+
+            for pelicula_element in peliculas_element.findall('pelicula'):
+                titulo = pelicula_element.find('titulo').text
+                director = pelicula_element.find('director').text
+                año_pelicula = int(pelicula_element.find('anio').text)
+                fecha_funcion = pelicula_element.find('fecha').text
+                hora_funcion = pelicula_element.find('hora').text
+                
+                imagen_element = pelicula_element.find('imagen')
+                imagen = imagen_element.text if imagen_element is not None else None
+
+                precio_element = pelicula_element.find('precio')
+                precio = float(precio_element.text) if precio_element is not None else 0.0
+
+                pelicula = Película(
+                    nombre_categoria=nombre_categoria,
+                    titulo=titulo,
+                    director=director,
+                    año_pelicula=año_pelicula,
+                    fecha_funcion=fecha_funcion,
+                    hora_funcion=hora_funcion,
+                    imagen=imagen,
+                    precio=precio
+                )
+
+                self.add(pelicula)
+        
+    def eliminar_pelicula(self, titulo):
+        if self.primero is None:
+            return
+
+        actual = self.primero
+        while True:
+            if actual.dato.titulo == titulo:
+                if actual == self.primero:
+                    self.primero = actual.siguiente
+                if actual == self.ultimo:
+                    self.ultimo = actual.anterior
+
+                actual.anterior.siguiente = actual.siguiente
+                actual.siguiente.anterior = actual.anterior
+
+                # Eliminar el objeto película si es necesario
+                del actual.dato
+                del actual
+
+                break
+
+            actual = actual.siguiente
+            if actual == self.primero:
+                break
+            
+    def eliminar_pelicula_del_xml(self, titulo):
+        tree = ET.parse('peliculas.xml')
+        root = tree.getroot()
+
+        for categoria_element in root.findall('.//categoria'):
+            peliculas_element = categoria_element.find('peliculas')
+
+            for pelicula_element in peliculas_element.findall('pelicula'):
+                if pelicula_element.find('titulo').text == titulo:
+                    peliculas_element.remove(pelicula_element)
+
+        tree.write('peliculas.xml')

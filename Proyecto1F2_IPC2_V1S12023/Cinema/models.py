@@ -1,5 +1,4 @@
 from django.db import models
-from PIL import Image
 
 # Create your models here.
 class Usuario(models.Model):
@@ -19,3 +18,8 @@ class Película(models.Model):
     hora_funcion = models.TimeField()
     imagen = models.ImageField(upload_to='assets')
     precio = models.DecimalField(max_digits=6, decimal_places=2)
+
+class Sala(models.Model):
+    numero_sala = models.CharField(max_length=100)
+    capacidad = models.IntegerField()
+    
