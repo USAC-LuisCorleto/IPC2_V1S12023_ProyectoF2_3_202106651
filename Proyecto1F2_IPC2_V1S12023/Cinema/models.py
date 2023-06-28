@@ -8,3 +8,18 @@ class Usuario(models.Model):
     telefono = models.CharField(max_length=255)
     correo = models.CharField(max_length=255)
     contraseña = models.CharField(max_length=255)
+
+class Película(models.Model):
+    nombre_categoria = models.CharField(max_length=255)
+    titulo = models.CharField(max_length=255)
+    director = models.CharField(max_length=255)
+    año_pelicula = models.IntegerField()
+    fecha_funcion = models.DateField()
+    hora_funcion = models.TimeField()
+    imagen = models.ImageField(upload_to='assets')
+    precio = models.DecimalField(max_digits=6, decimal_places=2)
+
+class Sala(models.Model):
+    numero_sala = models.CharField(max_length=100)
+    capacidad = models.IntegerField()
+    

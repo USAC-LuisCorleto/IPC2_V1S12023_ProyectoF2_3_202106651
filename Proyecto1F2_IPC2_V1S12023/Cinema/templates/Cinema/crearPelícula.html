@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'css/estilosCrearPelicula.css' %}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+        <title>Creando una película para USAC-Cinema</title>
+    </head>
+    <body>
+        <div class="formulario">
+            <h1>Crea una Película en USAC-Cinema</h1>
+            <form method="post" action="/Cinema/crearPelícula.html" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="username">
+                    <input type="text" name="nombre_categoria" required>
+                    <label>Categoría</label>
+                </div>
+                <div class="username">
+                    <input type="text" name="titulo" required>
+                    <label>Título</label>
+                </div>
+                <div class="username">
+                    <input type="text" name="director" required>
+                    <label>Director</label>
+                </div>
+                <div class="username">
+                    <input type="number" name="año_pelicula" required>
+                    <label>Año</label>
+                </div>
+                <div class="username">
+                    <input type="date" name="fecha_funcion" required>
+                    <label></label>
+                </div>
+                <div class="username">
+                    <input type="time" name="hora_funcion" required>
+                    <label></label>
+                </div>
+                <div class="username">
+                    <input type="file" name="imagen" accept="image/*" required>
+                    <label></label>
+                </div>
+                <div class="username">
+                    <input type="number" step="0.01" name="precio" required>
+                    <label>Precio</label>
+                <div class="botonReg">
+                    <input type="submit" value="Crear">
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
