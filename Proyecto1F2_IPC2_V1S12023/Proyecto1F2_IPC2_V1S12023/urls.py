@@ -13,6 +13,8 @@ from Cinema.views import MenCrearPelícula
 from Cinema.views import MenEditPelícula
 from Cinema.views import MenCargarPelícula
 from Cinema.views import MenCrearSala
+from Cinema.views import MenEditarSala
+from Cinema.views import MenCargarSala
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,4 +31,6 @@ urlpatterns = [
     path('Cinema/editarPelícula.html', MenEditPelícula, name='Men_EditarPelícula'),
     path('Cinema/cargarPelícula.html', MenCargarPelícula, name='Men_CargarPelícula'),
     path('Cinema/crearSala.html', MenCrearSala, name='Men_CrearSala'),
+    path('Cinema/editarSala.html', MenEditarSala, name='Men_EditarSala'),
+    path('Cinema/cargarSala.html', MenCargarSala, name='Men_CargarSala'),
 ]

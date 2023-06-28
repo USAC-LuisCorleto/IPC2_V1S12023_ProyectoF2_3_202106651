@@ -1,4 +1,5 @@
 import xml.etree.ElementTree as ET
+from .models import Sala
 
 class Nodo:
     def __init__(self, dato):
@@ -49,4 +50,70 @@ class ListaDoblementeEnlazada:
         tree = ET.ElementTree(root)
         tree.write("salas.xml")
 
-    
+    def obtener_lista_salas(self):
+        lista_salas = []
+
+        actual = self.primero
+        while actual is not None:
+            sala = {
+                'numero_sala': actual.dato.numero_sala,
+                'capacidad': actual.dato.capacidad,
+            }
+            lista_salas.append(sala)
+            actual = actual.siguiente
+
+        return lista_salas
+
+    def actualizar_sala(self, numero_sala, nueva_capacidad):
+        actual = self.primero
+        while actual is not None:
+            if actual.dato.numero_sala == numero_sala:
+                actual.dato.capacidad = nueva_capacidad
+                break
+            actual = actual.siguiente
+
+        tree = ET.parse('salas.xml')
+        root = tree.getroot()
+
+        for sala_element in root.findall('.//sala'):
+            if sala_element.find('numero').text == numero_sala:
+                sala_element.find('asientos').text = str(nueva_capacidad)
+
+        tree.write('salas.xml')
+
+    def eliminar_sala(self, sala):
+        actual = self.primero
+        while actual is not None:
+            if actual.dato.numero_sala == sala:
+                break
+            actual = actual.siguiente
+        if actual is not None:
+            if actual.anterior is None:
+                self.primero = actual.siguiente
+            else:
+                actual.anterior.siguiente = actual.siguiente
+            if actual.siguiente is not None:
+                actual.siguiente.anterior = actual.anterior
+
+            # Eliminar el elemento correspondiente del archivo XML
+            tree = ET.parse('salas.xml')
+            root = tree.getroot()
+
+            for sala_element in root.findall('sala'):
+                if sala_element.find('numero').text == sala:
+                    root.remove(sala_element)
+
+            tree.write('salas.xml')
+
+        self.guardar_en_xml()
+
+    def cargar_desde_xml(self, archivo):
+        tree = ET.parse(archivo)
+        root = tree.getroot()
+
+        for sala_element in root.findall('.//sala'):
+            numero_sala = sala_element.find('numero').text
+            capacidad = int(sala_element.find('asientos').text)
+
+            sala = Sala(numero_sala=numero_sala, capacidad=capacidad)
+            self.add(sala)

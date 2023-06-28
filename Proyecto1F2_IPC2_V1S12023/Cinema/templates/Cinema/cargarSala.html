@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{% static 'css/estilosCargarSala.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <title>USAC-Cinema la magia del Cine</title>
+</head>
+<body>
+    <div class="formulario">
+        <h1>Cargue un archivo XML con Salas</h1>
+        <form method="post" action="/Cinema/cargarSala.html">
+            {% csrf_token %}
+            <div class="username">
+                <input type="text" name="archivo" required>
+                <label>Nombre del Archivo</label>
+            </div>
+            <div class="botonReg">
+                <input type="submit" value="Cargar">
+            </div>
+        </form>
+        <div class="registrarse">
+            <a href="menuAdministrador.html">Regresar</a>
+        </div>
+    </div>
+</body>
+</html>

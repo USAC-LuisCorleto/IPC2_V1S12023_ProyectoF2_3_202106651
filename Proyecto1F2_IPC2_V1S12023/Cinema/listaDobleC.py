@@ -37,15 +37,15 @@ class ListaDoblementeEnlazadaCircular:
 
         actual = self.primero
         while True:
-            pelicula = {
-                'titulo': actual.dato.titulo,
-                'director': actual.dato.director,
-                'año_pelicula': actual.dato.año_pelicula,
-                'fecha_funcion': actual.dato.fecha_funcion,
-                'hora_funcion': actual.dato.hora_funcion,
-                'imagen': actual.dato.imagen,
-                'precio': actual.dato.precio,
-            }
+            pelicula = Película(
+                titulo=actual.dato.titulo,
+                director=actual.dato.director,
+                año_pelicula=actual.dato.año_pelicula,
+                fecha_funcion=actual.dato.fecha_funcion,
+                hora_funcion=actual.dato.hora_funcion,
+                imagen=actual.dato.imagen,
+                precio=actual.dato.precio
+            )
             lista_peliculas.append(pelicula)
             actual = actual.siguiente
             if actual == self.primero:
