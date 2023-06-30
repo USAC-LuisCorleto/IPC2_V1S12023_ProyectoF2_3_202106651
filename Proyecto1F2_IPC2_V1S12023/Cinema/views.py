@@ -339,7 +339,7 @@ def MenCargarTarjeta(request):
 def MenPeliculasFavoritas(request):
     global usuario_encontrado
     lista_peliculas = listaDobleE.obtener_lista_peliculas()
-    mensaje = None  # Inicializamos la variable mensaje
+    mensaje = None 
 
     if request.method == 'POST':
         peliFav = request.POST.get('peliculaFav')
