@@ -8,6 +8,7 @@ class Usuario(models.Model):
     telefono = models.CharField(max_length=255)
     correo = models.CharField(max_length=255)
     contraseña = models.CharField(max_length=255)
+    pelsFavs = []
 
 class Película(models.Model):
     nombre_categoria = models.CharField(max_length=255)
@@ -22,4 +23,9 @@ class Película(models.Model):
 class Sala(models.Model):
     numero_sala = models.CharField(max_length=100)
     capacidad = models.IntegerField()
-    
+
+class Tarjeta(models.Model):
+    tipo = models.CharField(max_length=50)
+    numero = models.CharField(max_length=16)
+    titular = models.CharField(max_length=100)
+    fecha_expiracion = models.CharField(max_length=7) 

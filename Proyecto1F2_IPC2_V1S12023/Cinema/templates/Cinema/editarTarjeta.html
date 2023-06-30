@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'css/estilosEditTarjeta.css' %}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+        <title>Editando una tarjeta de USAC-Cinema</title>
+    </head>
+<body>
+    <div id="main-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Tipo</th><th>Número</th><th>Títular</th><th>Fecha</th><th>Gestión</th>
+                </tr>
+            </thead>
+            {% for tarjeta in lista_tarjetas %}
+            <tr>
+                <td>{{ tarjeta.tipo }}</td>
+                <td>{{ tarjeta.numero }}</td>
+                <td>{{ tarjeta.titular }}</td>
+                <td>{{ tarjeta.fecha_expiracion }}</td>
+                <td>
+                    <form method="POST" action="/Cinema/editarTarjeta.html">
+                        {% csrf_token %}
+                        <input type="text" name="tipo" value="{{ tarjeta.tipo }}">
+                        <input type="text" name="numero" value="{{ tarjeta.numero }}">
+                        <input type="text" name="titular" value="{{ tarjeta.titular }}">
+                        <input type="text" name="fecha_expiracion" value="{{ tarjeta.fecha_expiracion }}">
+                        <button type="submit" class="editarb">Editar</button>
+                    </form>
+                    <form method="POST" action="/Cinema/editarTarjeta.html" onsubmit="return confirm('¿Estás seguro de eliminar esta tarjeta?')">
+                        {% csrf_token %}
+                        <input type="hidden" name="numero" value="{{ tarjeta.numero }}">
+                        <button type="submit" class="eliminarb">Eliminar</button>
+                        <input type="hidden" name="eliminar" value="1">
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="menuAdministrador.html">Regresar al Menú</a>
+    </div>
+</body>
+</html>

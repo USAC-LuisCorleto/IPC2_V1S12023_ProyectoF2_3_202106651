@@ -2,7 +2,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/estilosMenSesion.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
@@ -28,8 +30,96 @@
           restaurar el orden en el universo de una vez por todas, sin importar cuáles sean las consecuencias... 
           Cuarta y última entrega de la saga "Vengadores".
         </p>
-      </div>
-    </div>
-  </main>
+			</div>
+		</div>
+
+		<div class="peliculas-recomendadas contenedor">
+			<div class="contenedor-titulo-controles">
+				<h3>Películas en Cartelera</h3>
+				<div class="indicadores"></div>
+			</div>
+
+			<div class="contenedor-principal">
+				<button role="button" id="flecha-izquierda" class="flecha-izquierda"><i class="fas fa-angle-left"></i></button>
+				<div class="contenedor-carousel">
+					<div class="carousel">
+						{% for pelicula in lista_peliculas %}
+        				<div class="pelicula">
+            			<a href="#"><img src="{% static pelicula.imagen %}" alt=""></a>
+        				</div>
+    					{% endfor %}
+						<div class="pelicula">
+							<a href="#"><img src="{% static 'img/01.jpg' %}" alt=""></a>
+						</div>
+						<div class="pelicula">
+							<a href="#"><img src="{% static 'img/02.jpg' %}" alt=""></a>
+						</div>
+						<div class="pelicula">
+							<a href="#"><img src="{% static 'img/03.jpg' %}" alt=""></a>
+						</div>
+						<div class="pelicula">
+							<a href="#"><img src="{% static 'img/04.jpg' %}" alt=""></a>
+						</div>
+						<div class="pelicula">
+							<a href="#"><img src="{% static 'img/09.jpg' %}" alt=""></a>
+						</div>
+						<div class="pelicula">
+							<a href="#"><img src="{% static 'img/08.jpg' %}" alt=""></a>
+						</div>
+						<div class="pelicula">
+							<a href="#"><img src="{% static 'img/07.jpg' %}" alt=""></a>
+						</div>
+						<div class="pelicula">
+							<a href="#"><img src="{% static 'img/01.jpg' %}" alt=""></a>
+						</div>
+						<div class="pelicula">
+							<a href="#"><img src="{% static 'img/02.jpg' %}" alt=""></a>
+						</div>
+						<div class="pelicula">
+							<a href="#"><img src="{% static 'img/03.jpg' %}" alt=""></a>
+						</div>
+						<div class="pelicula">
+							<a href="#"><img src="{% static 'img/01.jpg' %}" alt=""></a>
+						</div>
+						<div class="pelicula">
+							<a href="#"><img src="{% static 'img/02.jpg' %}" alt=""></a>
+						</div>
+						<div class="pelicula">
+							<a href="#"><img src="{% static 'img/03.jpg' %}" alt=""></a>
+						</div>
+						<div class="pelicula">
+							<a href="#"><img src="{% static 'img/04.jpg' %}" alt=""></a>
+						</div>
+						<div class="pelicula">
+							<a href="#"><img src="{% static 'img/09.jpg' %}" alt=""></a>
+						</div>
+						<div class="pelicula">
+							<a href="#"><img src="{% static 'img/08.jpg' %}" alt=""></a>
+						</div>
+						<div class="pelicula">
+							<a href="#"><img src="{% static 'img/07.jpg' %}" alt=""></a>
+						</div>
+						<div class="pelicula">
+							<a href="#"><img src="{% static 'img/01.jpg' %}" alt=""></a>
+						</div>
+						<div class="pelicula">
+							<a href="#"><img src="{% static 'img/02.jpg' %}" alt=""></a>
+						</div>
+						<div class="pelicula">
+							<a href="#"><img src="{% static 'img/03.jpg' %}" alt=""></a>
+						</div>
+						<div class="pelicula">
+							<a href="#"><img src="{% static 'img/04.jpg' %}" alt=""></a>
+						</div>
+					</div>
+				</div>
+
+				<button role="button" id="flecha-derecha" class="flecha-derecha"><i class="fas fa-angle-right"></i></button>
+			</div>
+		</div>
+	</main>
+	
+	<script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
+	<script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>

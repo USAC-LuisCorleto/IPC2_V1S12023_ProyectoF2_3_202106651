@@ -95,7 +95,28 @@
                 </div>
             </li>
             <li class="dropdown__list">
-                <a href="sesionIniciar_Registrar.html" class="dropdown__link">
+                <a href="#" class="dropdown__link">
+                    <img src="{% static 'assets/card.svg' %}" class="dropdown__icon">
+                    <span class="dropdown__span">Tarjetas</span>
+                    <img src="{% static 'assets/down.svg' %}" class="dropdown__arrow">
+                    <input type="checkbox" class="dropdown__check">
+                </a>
+                <div class="dropdown__content">
+                    <ul class="dropdown__sub">
+                        <li class="dropdown__li">
+                            <a href="crearTarjeta.html" class="dropdown__anchor">Crear</a>
+                        </li>
+                        <li class="dropdown__li">
+                            <a href="editarTarjeta.html" class="dropdown__anchor">Editar o Eliminar</a>
+                        </li>
+                        <li class="dropdown__li">
+                            <a href="cargarTarjeta.html" class="dropdown__anchor">Cargar XML</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="dropdown__list">
+                <a href="menuSesion.html" class="dropdown__link">
                     <img src="{% static 'assets/end.svg' %}" class="dropdown__icon">
                     <span class="dropdown__span">Cerrar Sesión</span>
                 </a>

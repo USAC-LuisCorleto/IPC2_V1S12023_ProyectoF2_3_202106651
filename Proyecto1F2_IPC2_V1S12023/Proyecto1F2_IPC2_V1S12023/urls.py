@@ -15,6 +15,11 @@ from Cinema.views import MenCargarPelícula
 from Cinema.views import MenCrearSala
 from Cinema.views import MenEditarSala
 from Cinema.views import MenCargarSala
+from Cinema.views import MenCrearTarjeta
+from Cinema.views import MenEditarTarjeta
+from Cinema.views import MenCargarTarjeta
+from Cinema.views import MenPeliculasFavoritas
+from Cinema.views import MenVerPelisFavs
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -33,4 +38,9 @@ urlpatterns = [
     path('Cinema/crearSala.html', MenCrearSala, name='Men_CrearSala'),
     path('Cinema/editarSala.html', MenEditarSala, name='Men_EditarSala'),
     path('Cinema/cargarSala.html', MenCargarSala, name='Men_CargarSala'),
+    path('Cinema/crearTarjeta.html', MenCrearTarjeta, name='Men_CrearTarjeta'),
+    path('Cinema/editarTarjeta.html', MenEditarTarjeta, name='Men_EditarTarjeta'),
+    path('Cinema/cargarTarjeta.html', MenCargarTarjeta, name='Men_CargarTarjeta'),
+    path('Cinema/menuPeliculasFavs.html', MenPeliculasFavoritas, name='Men_PelisFavs'),
+    path('Cinema/menuVerPeliculas.html', MenVerPelisFavs, name='Men_VerPelisFavs'),
 ]

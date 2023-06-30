@@ -3,15 +3,19 @@ from django.shortcuts import redirect
 from .models import Usuario
 from .models import Película
 from .models import Sala
+from .models import Tarjeta
 from django.views.decorators.csrf import csrf_exempt
 from .listaSimple import ListaEnlazada
 from .listaDobleC import ListaDoblementeEnlazadaCircular
 from .listaDoble import ListaDoblementeEnlazada
+from .listaDobleT import ListaDoblementeEnlazadaT
 import requests
 
+usuario_encontrado = None
 listaSimpleE = ListaEnlazada()
 listaDobleE = ListaDoblementeEnlazadaCircular()
 ListaDoble = ListaDoblementeEnlazada()
+ListaDobleT = ListaDoblementeEnlazadaT()
 incremento = 0
 datos_cargados = False
 user="3082203580607"
@@ -25,15 +29,21 @@ def MenInicial(request):
 
 @csrf_exempt
 def MenIniciarSesion(request):
+    global usuario_encontrado 
+
     if request.method == 'POST':
         usuario = request.POST['usuario']
         contraseña = request.POST['contraseña']
 
         if usuario == user and contraseña == password:
             return render(request, "Cinema/menuAdministrador.html")
-        usuario_encontrado = listaSimpleE.buscar_usuario(usuario,contraseña)
+        
+        usuario_encontrado = listaSimpleE.buscar_usuario(usuario, contraseña)
         if usuario_encontrado is not None:
-            return render (request, "Cinema/menuCliente.html")
+            return render(request, "Cinema/menuCliente.html")
+        else:
+            mensaje = "El usuario ingresado no existe. Regístrese o verifique sus credenciales."
+            return render(request, "Cinema/sesionIniciar_Registrar.html", {'mensaje': mensaje})
     return render(request, "Cinema/sesionIniciar_Registrar.html")
 
 @csrf_exempt
@@ -48,7 +58,7 @@ def MenRegUsuario(request):
         usuario = Usuario(rol='Cliente', nombre=nombre, apellido=apellido, telefono=telefono, correo=correo, contraseña=contraseña)
         listaSimpleE.add(usuario)
         listaSimpleE.generar_archivo_XML()
-        return redirect('menuCliente.html')
+        return redirect('menuSesion.html')
 
     return render (request, "Cinema/registroUser.html")
 
@@ -263,3 +273,89 @@ def MenCargarSala(request):
         return redirect('menuAdministrador.html')
 
     return render(request, "Cinema/cargarSala.html")
+
+@csrf_exempt
+def MenCrearTarjeta(request):
+    if request.method == 'POST':
+        tipot = request.POST['tipo']
+        titulart = request.POST['numero']
+        numerot = request.POST['titular']
+        fechat = request.POST['expiración']
+
+        tarjeta = Tarjeta(tipo=tipot, numero=numerot, titular=titulart, fecha_expiracion=fechat)
+        ListaDobleT.agregar(tarjeta)
+        ListaDobleT.generar_archivo_xml()
+        return redirect('menuAdministrador.html')
+    
+    return render(request, "Cinema/crearTarjeta.html")
+
+@csrf_exempt
+def MenEditarTarjeta(request):
+    if request.method == 'POST':
+        if 'eliminar' in request.POST:
+            numero_tarjeta = request.POST['numero']
+            ListaDobleT.eliminar_tarjeta(numero_tarjeta)
+            return redirect('editarTarjeta.html')
+
+        numero_tarjeta = request.POST['numero']
+        nuevo_no_tarjeta = request.POST['numero']
+        nuevo_titular = request.POST['titular']
+        nueva_fecha_expiracion = request.POST['fecha_expiracion']
+
+        ListaDobleT.actualizar_tarjeta(numero_tarjeta, nuevo_no_tarjeta, nuevo_titular, nueva_fecha_expiracion)
+        return redirect('editarTarjeta.html')
+
+    lista_tarjetas = ListaDobleT.obtener_lista_tarjetas()
+
+    context = {
+        'lista_tarjetas': lista_tarjetas,
+    }
+    return render(request, "Cinema/editarTarjeta.html", context)
+
+def MenCargarTarjeta(request):
+    if request.method == 'POST':
+
+        archivo = request.POST['archivo']
+        ListaDobleT.cargar_desde_xml(archivo)
+        ListaDobleT.generar_archivo_xml()
+
+        response = requests.get('http://localhost:5010/getTarjetas')
+        tarjetas_API = response.json()
+
+        for tarjeta in tarjetas_API['tarjetas']:
+            tipon = tarjeta['tipo']
+            numeron = tarjeta['numero']
+            titularn = tarjeta['titular']
+            fechan = tarjeta['fecha_expiracion']
+
+            nueva_tarjeta = Tarjeta(tipo=tipon, numero=numeron, titular=titularn, fecha_expiracion=fechan)
+            ListaDobleT.agregar(nueva_tarjeta)
+
+        return redirect('menuAdministrador.html')
+    
+    return render(request, "Cinema/cargarTarjeta.html")
+
+@csrf_exempt
+def MenPeliculasFavoritas(request):
+    global usuario_encontrado
+    lista_peliculas = listaDobleE.obtener_lista_peliculas()
+    mensaje = None  # Inicializamos la variable mensaje
+
+    if request.method == 'POST':
+        peliFav = request.POST.get('peliculaFav')
+
+        if usuario_encontrado is not None:
+            if peliFav in [pelicula.titulo for pelicula in lista_peliculas]:
+                usuario_encontrado.pelsFavs.append(peliFav)
+                mensaje = "Película agregada correctamente"
+            else:
+                mensaje = "La película no existe en la lista"
+
+    return render(request, "Cinema/menuPeliculasFavs.html", {'lista_peliculas': lista_peliculas, 'mensaje': mensaje})
+
+def MenVerPelisFavs(request):
+    global usuario_encontrado
+    peliculas_favoritas = usuario_encontrado.pelsFavs
+
+    return render(request, "Cinema/menuVerPeliculas.html", {'peliculas_favoritas': peliculas_favoritas})
+

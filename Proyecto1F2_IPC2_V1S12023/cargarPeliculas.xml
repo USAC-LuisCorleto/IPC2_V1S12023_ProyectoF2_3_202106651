@@ -8,7 +8,7 @@
                 <anio>2019</anio>
                 <fecha>2023-06-05</fecha>
                 <hora>18:30</hora>
-                <imagen>https://usaccinema.com/image1.png</imagen>
+                <imagen>static/img/01.jpg</imagen>
                 <precio>42</precio>
             </pelicula>
             <pelicula>
@@ -17,7 +17,7 @@
                 <anio>2014</anio>
                 <fecha>2023-06-06</fecha>
                 <hora>20:00</hora>
-                <imagen>https://usaccinema.com/image2.png</imagen>
+                <imagen>static/img/02.jpg</imagen>
                 <precio>45</precio>
             </pelicula>
             <pelicula>
@@ -26,7 +26,7 @@
                 <anio>2018</anio>
                 <fecha>2023-06-07</fecha>
                 <hora>19:15</hora>
-                <imagen>https://usaccinema.com/image2.png</imagen>
+                <imagen>static/img/03.jpg</imagen>
                 <precio>55</precio>
             </pelicula>
         </peliculas>
@@ -40,7 +40,7 @@
                 <anio>2016</anio>
                 <fecha>2023-06-05</fecha>
                 <hora>20:30</hora>
-                <imagen>https://usaccinema.com/image5.png</imagen>
+                <imagen>static/img/04.jpg</imagen>
                 <precio>65</precio>
             </pelicula>
             <pelicula>
@@ -49,7 +49,7 @@
                 <anio>2007</anio>
                 <fecha>2023-06-06</fecha>
                 <hora>21:00</hora>
-                <imagen>https://usaccinema.com/image5.png</imagen>
+                <imagen>static/img/05.jpg</imagen>
                 <precio>48</precio>
             </pelicula>
             <pelicula>
@@ -58,8 +58,17 @@
                 <anio>2011</anio>
                 <fecha>2023-06-07</fecha>
                 <hora>20:15</hora>
-                <imagen>https://usaccinema.com/image3.png</imagen>
+                <imagen>static/img/06.jpg</imagen>
                 <precio>42</precio>
+            </pelicula>
+            <pelicula>
+                <titulo>Son como niños</titulo>
+                <director>Sthepen Hak</director>
+                <anio>2013</anio>
+                <fecha>2023-07-07</fecha>
+                <hora>00:15</hora>
+                <imagen>static/img/07.jpg</imagen>
+                <precio>52</precio>
             </pelicula>
         </peliculas>
     </categoria>

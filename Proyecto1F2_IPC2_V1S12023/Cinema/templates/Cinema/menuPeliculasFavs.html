@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{% static 'css/agregarPelFavs.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <title>Editando películas de USAC-Cinema</title>
+</head>
+<body>
+    <div class="formulario">
+        <h1>Ingrese el nombre de la película</h1>
+        <form method="post" action="/Cinema/menuPeliculasFavs.html">
+            <div class ="username">
+                <input type="text" name= "peliculaFav" required>
+                <label>Nombre de la película</label>
+            </div>
+            {% if mensaje %}
+            <div class="error-message">{{ mensaje }}</div>
+            {% endif %}
+            <div class="botonReg">
+                <input type="submit" value="Agregar a favoritos">
+            </div>
+        </form>
+    </div>
+    <div id="main-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Director</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pelicula in lista_peliculas %}
+                <tr>
+                    <td>{{ pelicula.titulo }}</td>
+                    <td>{{ pelicula.director }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="menuCliente.html">Regresar al Menú</a>
+    </div>
+</body>
+</html>

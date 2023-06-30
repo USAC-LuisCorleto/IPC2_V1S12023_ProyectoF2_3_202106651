@@ -129,7 +129,7 @@ class ListaEnlazada:
         tree = ET.parse(archivo)
         root = tree.getroot()
 
-        for usuario_element in root.findall('usuario'):
+        for usuario_element in root.findall('.//usuario'):
             rol = usuario_element.find('rol').text
             nombre = usuario_element.find('nombre').text
             apellido = usuario_element.find('apellido').text

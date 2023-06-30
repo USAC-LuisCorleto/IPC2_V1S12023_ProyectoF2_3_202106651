@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{% static 'css/estilosVerPels.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <title>Películas favoritas de USAC-Cinema</title>
+</head>
+<body>
+<div id="main-container">
+    <table>
+        <thead>
+            <tr>
+                <th>Título</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tbody>
+                {% for pelicula in peliculas_favoritas %}
+                    <tr>
+                        <td>{{ pelicula }}</td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td>No hay películas favoritas</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </tbody>
+    </table>
+    <a href="menuCliente.html">Regresar al Menú</a>
+</div>
+</body>
+</html>

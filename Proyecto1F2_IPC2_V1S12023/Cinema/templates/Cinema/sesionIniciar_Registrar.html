@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="{% static 'css/estilosLog.css' %}">
+    <link rel="stylesheet" href="{% static 'css/estilosLogS.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
@@ -20,6 +20,9 @@
                 <input type="password" name="contraseña" required>
                 <label>Contraseña</label>
             </div>
+            {% if mensaje %}
+            <div class="error-message">{{ mensaje }}</div>
+            {% endif %}
             <div class ="recordar">¿Olvidó su contraseña?</div>
             <input type="submit" value="Iniciar sesión">
             <div class="registrarse">

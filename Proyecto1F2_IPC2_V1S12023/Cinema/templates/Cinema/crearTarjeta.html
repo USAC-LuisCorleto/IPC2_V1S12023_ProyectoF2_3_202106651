@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'css/estilosCrearTarjeta.css' %}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+        <title>Creando una sala para USAC-Cinema</title>
+    </head>
+    <body>
+        <div class="formulario">
+            <h1>Cree una sala de USAC-Cinema</h1>
+            <form method="post" action="/Cinema/crearTarjeta.html">
+                <div class="username">
+                    <input type="text" name="tipo" required>
+                    <label>Tipo</label>
+                </div>
+                <div class="username">
+                    <input type="text" name="numero" required>
+                    <label>Número de tarjeta</label>
+                </div>
+                <div class="username">
+                    <input type="text" name="titular" required>
+                    <label>Titular de la tarjeta</label>
+                </div>
+                <div class="username">
+                    <input type="text" name="expiración" required>
+                    <label>Fecha de expiración</label>
+                </div>
+                <div class="botonReg">
+                    <input type="submit" value="Crear">
+                </div>
+            </form>
+            <div class="registrarse">
+                <a href="menuAdministrador.html">Regresar</a>
+           </div>
+        </div>
+    </body>
+</html>

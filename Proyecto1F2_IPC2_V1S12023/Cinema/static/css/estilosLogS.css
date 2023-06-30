@@ -122,3 +122,9 @@ body{
 .registrarse a:hover{
     text-decoration: underline;
 }
+
+div.error-message {
+    color: red;
+    font-weight: bold;
+    padding-bottom: 15px;
+}
