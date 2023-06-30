@@ -9,6 +9,7 @@ class Usuario(models.Model):
     correo = models.CharField(max_length=255)
     contraseña = models.CharField(max_length=255)
     pelsFavs = []
+    historialBoletos = []
 
 class Película(models.Model):
     nombre_categoria = models.CharField(max_length=255)
