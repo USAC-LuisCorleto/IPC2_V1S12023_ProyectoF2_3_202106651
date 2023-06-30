@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{% static 'css/estilosCartelera.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <title>Editando películas de USAC-Cinema</title>
+</head>
+<body>
+    <div id="main-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Imagen</th>
+                    <th>Precio</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pelicula in lista_peliculas %}
+                <tr>
+                    <td>{{ pelicula.titulo }}</td>
+                    <td>{{ pelicula.fecha_funcion }}</td>
+                    <td>{{ pelicula.hora_funcion }}</td>
+                    <td>
+                        <img src="{{ pelicula.imagen }}" alt="{{ pelicula.titulo }}" class="imagen-pelicula">
+                    </td>
+                    <td>{{ pelicula.precio }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="menuSesion.html">Regresar al Menú</a>
+    </div>
+</body>
+</html>

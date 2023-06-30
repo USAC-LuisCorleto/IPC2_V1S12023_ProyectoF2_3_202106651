@@ -36,3 +36,9 @@ tr:hover td{
 	background-color: #e509149d;
 	color: white;
 }
+
+.imagen-pelicula {
+    width: 200px; 
+    height: 200px; 
+    object-fit: cover; 
+}

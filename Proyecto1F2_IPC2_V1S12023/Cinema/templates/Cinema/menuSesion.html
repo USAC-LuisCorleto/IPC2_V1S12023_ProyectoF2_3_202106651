@@ -16,7 +16,7 @@
         <h2 class="logotipo">USAC-Cinema</h2>
         <nav>
             <a href="sesionIniciar_Registrar.html">Iniciar sesión</a>
-            <a href="#">Películas</a>
+            <a href="pelisCartelera.html">Películas</a>
         </nav>
     </div>
   </header>
@@ -45,75 +45,11 @@
 					<div class="carousel">
 						{% for pelicula in lista_peliculas %}
         				<div class="pelicula">
-            			<a href="#"><img src="{% static pelicula.imagen %}" alt=""></a>
+            			<a href="#"><img src="{{ pelicula.imagen }}" alt="{{ pelicula.titulo }}"></a>
         				</div>
     					{% endfor %}
-						<div class="pelicula">
-							<a href="#"><img src="{% static 'img/01.jpg' %}" alt=""></a>
-						</div>
-						<div class="pelicula">
-							<a href="#"><img src="{% static 'img/02.jpg' %}" alt=""></a>
-						</div>
-						<div class="pelicula">
-							<a href="#"><img src="{% static 'img/03.jpg' %}" alt=""></a>
-						</div>
-						<div class="pelicula">
-							<a href="#"><img src="{% static 'img/04.jpg' %}" alt=""></a>
-						</div>
-						<div class="pelicula">
-							<a href="#"><img src="{% static 'img/09.jpg' %}" alt=""></a>
-						</div>
-						<div class="pelicula">
-							<a href="#"><img src="{% static 'img/08.jpg' %}" alt=""></a>
-						</div>
-						<div class="pelicula">
-							<a href="#"><img src="{% static 'img/07.jpg' %}" alt=""></a>
-						</div>
-						<div class="pelicula">
-							<a href="#"><img src="{% static 'img/01.jpg' %}" alt=""></a>
-						</div>
-						<div class="pelicula">
-							<a href="#"><img src="{% static 'img/02.jpg' %}" alt=""></a>
-						</div>
-						<div class="pelicula">
-							<a href="#"><img src="{% static 'img/03.jpg' %}" alt=""></a>
-						</div>
-						<div class="pelicula">
-							<a href="#"><img src="{% static 'img/01.jpg' %}" alt=""></a>
-						</div>
-						<div class="pelicula">
-							<a href="#"><img src="{% static 'img/02.jpg' %}" alt=""></a>
-						</div>
-						<div class="pelicula">
-							<a href="#"><img src="{% static 'img/03.jpg' %}" alt=""></a>
-						</div>
-						<div class="pelicula">
-							<a href="#"><img src="{% static 'img/04.jpg' %}" alt=""></a>
-						</div>
-						<div class="pelicula">
-							<a href="#"><img src="{% static 'img/09.jpg' %}" alt=""></a>
-						</div>
-						<div class="pelicula">
-							<a href="#"><img src="{% static 'img/08.jpg' %}" alt=""></a>
-						</div>
-						<div class="pelicula">
-							<a href="#"><img src="{% static 'img/07.jpg' %}" alt=""></a>
-						</div>
-						<div class="pelicula">
-							<a href="#"><img src="{% static 'img/01.jpg' %}" alt=""></a>
-						</div>
-						<div class="pelicula">
-							<a href="#"><img src="{% static 'img/02.jpg' %}" alt=""></a>
-						</div>
-						<div class="pelicula">
-							<a href="#"><img src="{% static 'img/03.jpg' %}" alt=""></a>
-						</div>
-						<div class="pelicula">
-							<a href="#"><img src="{% static 'img/04.jpg' %}" alt=""></a>
-						</div>
 					</div>
 				</div>
-
 				<button role="button" id="flecha-derecha" class="flecha-derecha"><i class="fas fa-angle-right"></i></button>
 			</div>
 		</div>

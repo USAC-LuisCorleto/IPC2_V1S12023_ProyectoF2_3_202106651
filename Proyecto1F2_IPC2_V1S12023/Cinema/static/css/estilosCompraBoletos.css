@@ -1,0 +1,12 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  select {
+    padding: 10px;
+    margin: 10px;
+    font-size: 16px;
+  }

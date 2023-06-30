@@ -2,6 +2,7 @@ import xml.etree.ElementTree as ET
 from datetime import datetime
 from datetime import datetime
 from .models import Película
+import xml.sax.saxutils as saxutils
 
 class Nodo:
     def __init__(self, dato):
@@ -93,7 +94,7 @@ class ListaDoblementeEnlazadaCircular:
                     hora_element.text = datetime.strptime(actual.dato.hora_funcion, "%H:%M").strftime("%H:%M")
 
                     imagen_element = ET.SubElement(pelicula_element, "imagen")
-                    imagen_element.text = actual.dato.imagen.name if actual.dato.imagen else ""
+                    imagen_element.text = actual.dato.imagen
 
                     precio_element = ET.SubElement(pelicula_element, "precio")
                     precio_element.text = str(actual.dato.precio)
@@ -150,7 +151,7 @@ class ListaDoblementeEnlazadaCircular:
                 hora_funcion = pelicula_element.find('hora').text
                 
                 imagen_element = pelicula_element.find('imagen')
-                imagen = imagen_element.text if imagen_element is not None else None
+                imagen = saxutils.escape(imagen_element.text) if imagen_element is not None else None
 
                 precio_element = pelicula_element.find('precio')
                 precio = float(precio_element.text) if precio_element is not None else 0.0

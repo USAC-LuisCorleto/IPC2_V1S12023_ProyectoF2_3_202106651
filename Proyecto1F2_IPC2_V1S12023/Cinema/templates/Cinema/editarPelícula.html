@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="{% static 'css/estilosEditPel.css' %}">
+    <link rel="stylesheet" href="{% static 'css/estilosEditPels.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
@@ -31,7 +31,9 @@
                     <td>{{ pelicula.año_pelicula }}</td>
                     <td>{{ pelicula.fecha_funcion }}</td>
                     <td>{{ pelicula.hora_funcion }}</td>
-                    <td>{{ pelicula.imagen }}</td>
+                    <td>
+                        <img src="{{ pelicula.imagen }}" alt="{{ pelicula.titulo }}" class="imagen-pelicula">
+                    </td>
                     <td>{{ pelicula.precio }}</td>
                     <td>
                         <form method="POST" action="/Cinema/editarPelícula.html">

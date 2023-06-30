@@ -8,7 +8,7 @@
                 <anio>2019</anio>
                 <fecha>2023-06-05</fecha>
                 <hora>18:30</hora>
-                <imagen>static/img/01.jpg</imagen>
+                <imagen>https://img.genial.ly/5ee0e19b6c66054274b76c7f/f3fcb68c-1c00-4063-a2d5-ba53858ddb8a.jpeg</imagen>
                 <precio>42</precio>
             </pelicula>
             <pelicula>
@@ -17,7 +17,7 @@
                 <anio>2014</anio>
                 <fecha>2023-06-06</fecha>
                 <hora>20:00</hora>
-                <imagen>static/img/02.jpg</imagen>
+                <imagen>https://www.ecartelera.com/carteles/14200/14279/004_m.jpg</imagen>
                 <precio>45</precio>
             </pelicula>
             <pelicula>
@@ -26,7 +26,7 @@
                 <anio>2018</anio>
                 <fecha>2023-06-07</fecha>
                 <hora>19:15</hora>
-                <imagen>static/img/03.jpg</imagen>
+                <imagen>https://sm.ign.com/ign_es/screenshot/default/dild-k5x0aeobbj_m7u1.jpg</imagen>
                 <precio>55</precio>
             </pelicula>
         </peliculas>
@@ -40,7 +40,7 @@
                 <anio>2016</anio>
                 <fecha>2023-06-05</fecha>
                 <hora>20:30</hora>
-                <imagen>static/img/04.jpg</imagen>
+                <imagen>https://es.web.img3.acsta.net/r_1280_720/img/03/4f/034f680ce275370ba66455bfb78caba0.jpg</imagen>
                 <precio>65</precio>
             </pelicula>
             <pelicula>
@@ -49,7 +49,7 @@
                 <anio>2007</anio>
                 <fecha>2023-06-06</fecha>
                 <hora>21:00</hora>
-                <imagen>static/img/05.jpg</imagen>
+                <imagen>https://i.pinimg.com/originals/83/d2/6b/83d26b4118ebca6795a222609137fa5f.jpg</imagen>
                 <precio>48</precio>
             </pelicula>
             <pelicula>
@@ -58,7 +58,7 @@
                 <anio>2011</anio>
                 <fecha>2023-06-07</fecha>
                 <hora>20:15</hora>
-                <imagen>static/img/06.jpg</imagen>
+                <imagen>https://c8.alamy.com/compes/p3yy3b/el-titulo-de-la-pelicula-original-bridesmaids-titulo-en-ingles-bridesmaids-el-director-de-cine-paul-feig-ano-2011-credito-universal-pictures-album-p3yy3b.jpg</imagen>
                 <precio>42</precio>
             </pelicula>
             <pelicula>
@@ -67,7 +67,7 @@
                 <anio>2013</anio>
                 <fecha>2023-07-07</fecha>
                 <hora>00:15</hora>
-                <imagen>static/img/07.jpg</imagen>
+                <imagen>https://mx.web.img3.acsta.net/pictures/20/07/07/00/55/1740448.jpg</imagen>
                 <precio>52</precio>
             </pelicula>
         </peliculas>

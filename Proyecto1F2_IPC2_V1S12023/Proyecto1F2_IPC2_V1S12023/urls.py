@@ -20,6 +20,8 @@ from Cinema.views import MenEditarTarjeta
 from Cinema.views import MenCargarTarjeta
 from Cinema.views import MenPeliculasFavoritas
 from Cinema.views import MenVerPelisFavs
+from Cinema.views import CarteleraPrincipal
+from Cinema.views import MenCompraBoletos
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -43,4 +45,6 @@ urlpatterns = [
     path('Cinema/cargarTarjeta.html', MenCargarTarjeta, name='Men_CargarTarjeta'),
     path('Cinema/menuPeliculasFavs.html', MenPeliculasFavoritas, name='Men_PelisFavs'),
     path('Cinema/menuVerPeliculas.html', MenVerPelisFavs, name='Men_VerPelisFavs'),
+    path('Cinema/pelisCartelera.html', CarteleraPrincipal, name='Men_Cartelera'),
+    path('Cinema/compraBoletos.html', MenCompraBoletos, name='Men_CompraBoletos'),
 ]

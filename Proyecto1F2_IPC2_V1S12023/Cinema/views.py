@@ -22,10 +22,16 @@ user="3082203580607"
 password="202106651"
     
 def MenInicialCerrarSesion(request):
-    return render (request, "Cinema/menuSesion.html")
+    global usuario_encontrado
+    usuario_encontrado = None
+    lista_peliculas = listaDobleE.obtener_lista_peliculas()
+    return render (request, "Cinema/menuSesion.html", {'lista_peliculas': lista_peliculas})
 
 def MenInicial(request):
-    return render (request, "Cinema/menuSesion.html")
+    lista_peliculas = listaDobleE.obtener_lista_peliculas()
+    global usuario_encontrado
+    usuario_encontrado = None
+    return render (request, "Cinema/menuSesion.html", {'lista_peliculas': lista_peliculas})
 
 @csrf_exempt
 def MenIniciarSesion(request):
@@ -40,7 +46,8 @@ def MenIniciarSesion(request):
         
         usuario_encontrado = listaSimpleE.buscar_usuario(usuario, contraseña)
         if usuario_encontrado is not None:
-            return render(request, "Cinema/menuCliente.html")
+            lista_peliculas = listaDobleE.obtener_lista_peliculas()
+            return render(request, "Cinema/menuCliente.html", {'lista_peliculas': lista_peliculas})
         else:
             mensaje = "El usuario ingresado no existe. Regístrese o verifique sus credenciales."
             return render(request, "Cinema/sesionIniciar_Registrar.html", {'mensaje': mensaje})
@@ -63,7 +70,9 @@ def MenRegUsuario(request):
     return render (request, "Cinema/registroUser.html")
 
 def MenCliente(request):
-    return render (request, "Cinema/menuCliente.html")
+    global usuario_encontrado
+    lista_peliculas = listaDobleE.obtener_lista_peliculas()
+    return render (request, "Cinema/menuCliente.html", {'lista_peliculas': lista_peliculas})
 
 @csrf_exempt
 def MenCrearUsuario(request):
@@ -129,12 +138,14 @@ def MenCargarUsuarios(request):
 
             nuevo_usuario = Usuario(rol=rol, nombre=nombre, apellido=apellido, telefono=telefono, correo=correo, contraseña=contraseña)
             listaSimpleE.add(nuevo_usuario)
+            listaSimpleE.generar_archivo_XML()
 
         listaSimpleE.generar_archivo_XML()
         return redirect('menuAdministrador.html')
 
     return render(request, "Cinema/cargarUsuario.html")
 
+@csrf_exempt
 def MenCrearPelícula(request):
     if request.method == 'POST':
         nombre_categoria = request.POST['nombre_categoria']
@@ -143,7 +154,7 @@ def MenCrearPelícula(request):
         año_pelicula = int(request.POST['año_pelicula'])
         fecha_funcion = request.POST['fecha_funcion']
         hora_funcion = request.POST['hora_funcion']
-        imagen = request.FILES['imagen']
+        imagen = request.POST['imagen']
         precio = request.POST['precio']
 
         pel = Película(nombre_categoria=nombre_categoria, titulo=titulo, director=director, año_pelicula=año_pelicula, fecha_funcion=fecha_funcion, hora_funcion=hora_funcion, imagen=imagen, precio=precio)
@@ -202,6 +213,7 @@ def MenCargarPelícula(request):
 
                 nueva_pelicula = Película(nombre_categoria=nombre_categoria, titulo=titulo, director=director, año_pelicula=año_pelicula, fecha_funcion=fecha_funcion, hora_funcion=hora_funcion, imagen=imagen, precio=precio)
                 listaDobleE.add(nueva_pelicula)
+                listaDobleE.guardar_en_xml()
                 
         return redirect('menuAdministrador.html')
     return render(request, "Cinema/cargarPelícula.html")
@@ -267,6 +279,7 @@ def MenCargarSala(request):
 
                 nueva_sala = Sala(numero_sala=numero_sala, capacidad=capacidad)
                 ListaDoble.add(nueva_sala)
+                ListaDoble.guardar_en_xml()
 
         datos_cargados = True
 
@@ -330,6 +343,7 @@ def MenCargarTarjeta(request):
 
             nueva_tarjeta = Tarjeta(tipo=tipon, numero=numeron, titular=titularn, fecha_expiracion=fechan)
             ListaDobleT.agregar(nueva_tarjeta)
+            ListaDobleT.generar_archivo_xml()
 
         return redirect('menuAdministrador.html')
     
@@ -358,4 +372,11 @@ def MenVerPelisFavs(request):
     peliculas_favoritas = usuario_encontrado.pelsFavs
 
     return render(request, "Cinema/menuVerPeliculas.html", {'peliculas_favoritas': peliculas_favoritas})
+
+def CarteleraPrincipal(request):
+    lista_peliculas = listaDobleE.obtener_lista_peliculas()
+    return render(request, "Cinema/pelisCartelera.html", {'lista_peliculas': lista_peliculas})
+
+def MenCompraBoletos(request):
+    return render(request, "Cinema/compraBoletos.html")
 
